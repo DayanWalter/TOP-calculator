@@ -1,0 +1,18 @@
+#calculator{
+    border: 10px solid black;
+    display: grid;
+    grid-template-rows: repeat(6, 80px);
+    grid-template-columns: repeat(4, 100px);
+}
+#display{
+    grid-column-start: 1;
+    grid-column-end: 5;
+    border: 5px solid gray;
+}
+#button0{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+#main{
+    display: flex;
+}
