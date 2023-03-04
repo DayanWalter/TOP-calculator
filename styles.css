@@ -7,10 +7,11 @@
 #display{
     grid-column-start: 1;
     grid-column-end: 5;
-    border: 5px solid gray;
+    border: 2px solid red;
     display:flex;
     justify-content:flex-end;
     align-items:center;
+    font-size: 5em;
 }
 #button0{
     grid-column-start: 1;
