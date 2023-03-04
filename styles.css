@@ -16,3 +16,6 @@
 #main{
     display: flex;
 }
+body{
+    background-color:rgb(223, 255, 223);
+}
