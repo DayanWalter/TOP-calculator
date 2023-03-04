@@ -27,6 +27,11 @@ if(operator === plus){
 }
 
 };
+const addNumber = (e)=> console.log(e);
+
+window.addEventListener('keydown', addNumber);
+
+
 console.log(addition(7,7));
 console.log(subtraction(7, 7));
 console.log(multiplication(7, 7));
