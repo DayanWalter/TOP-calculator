@@ -27,7 +27,20 @@ if(operator === plus){
 }
 
 };
+
+const calculatorDiv = document.getElementById("calculator");
+const calculatorButtons = document.querySelectorAll(".key");
 const displayContent = document.getElementById("display");
+
+// every button in the calculator clicked will be displayed
+calculatorButtons.forEach(function(button){ 
+    button.addEventListener("click", function(e){
+        displayContent.innerHTML = e.target.innerText;
+        console.log(e.target.innerText);
+    });
+});
+
+
 window.addEventListener('keydown', function(e){
     displayContent.innerHTML = e.key;
     console.log(e.key);
