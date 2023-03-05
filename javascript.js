@@ -28,8 +28,9 @@ if(operator === plus){
 
 };
 
-let displayValue;
-let operator;
+let displayValueA = "";
+let displayValueB = "";
+let operator = "";
 
 const allClearButton = document.getElementById("allClear");
 const calculatorDiv = document.getElementById("calculator");
@@ -40,7 +41,9 @@ const displayContent = document.getElementById("display");
 // set the display and displayValue to ""
 allClearButton.addEventListener("click", function(){
     displayContent.innerHTML = "";
-    displayValue = "";
+    displayValueA = "";
+    displayValueB = "";
+    operator = "";
 });
 
 // every button in the calculator clicked will be displayed
@@ -48,8 +51,16 @@ allClearButton.addEventListener("click", function(){
 operandButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
         displayContent.innerHTML += e.target.innerText;
-        displayValue += e.target.innerText;
+        if(operator === ""){
+
+        displayValueA += e.target.innerText;
         console.log(e.target.innerText);
+        }else if (operator !== "") {
+        displayValueB += e.target.innerText; 
+        displayContent.innerHTML = displayValueB;
+        console.log(e.target.innerText);
+        
+        }
     });
 });
 
@@ -59,12 +70,12 @@ operatorButtons.forEach(function(button){
         // displayContent.innerHTML = "";
         operator = e.target.innerText;
         console.log(e.target.innerText);
+        a = displayValueA;
+        console.log(a);
     });
 });
 
-// const addValue = function(){
-//     let a = 
-// }
+
 // evrey button pressed will be displayed
 window.addEventListener('keydown', function(e){
     const numbersOnly = e.key;
@@ -74,7 +85,7 @@ window.addEventListener('keydown', function(e){
 
 
 
-console.log(addition(7,7));
-console.log(subtraction(7, 7));
-console.log(multiplication(7, 7));
-console.log(division(7,7));
+// console.log(addition(7,7));
+// console.log(subtraction(7, 7));
+// console.log(multiplication(7, 7));
+// console.log(division(7,7));
