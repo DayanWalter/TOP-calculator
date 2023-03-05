@@ -27,22 +27,29 @@ if(operator === plus){
 }
 
 };
-
+const allClearButton = document.getElementById("allClear");
 const calculatorDiv = document.getElementById("calculator");
-const calculatorButtons = document.querySelectorAll(".key");
+const operandButtons = document.querySelectorAll(".operand");
+const operatorButtons = document.querySelectorAll(".operator");
 const displayContent = document.getElementById("display");
 
+// set the display to "0"
+allClearButton.addEventListener("click", ()=> displayContent.innerHTML = "0");
+
 // every button in the calculator clicked will be displayed
-calculatorButtons.forEach(function(button){ 
+operandButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
-        displayContent.innerHTML += e.target.innerText;;
+        displayContent.innerHTML += e.target.innerText;
         console.log(e.target.innerText);
     });
 });
 
-
+// const addValue = function(){
+//     let a = 
+// }
+// evrey button pressed will be displayed
 window.addEventListener('keydown', function(e){
-    displayContent.innerHTML = e.key;
+    displayContent.innerHTML += e.key;
     console.log(e.key);
 });
 
