@@ -35,9 +35,8 @@ const displayContent = document.getElementById("display");
 // every button in the calculator clicked will be displayed
 calculatorButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
-        const displayValue = e.target.innerText;
-        displayContent.innerHTML = displayValue;
-        console.log(displayValue);
+        displayContent.innerHTML += e.target.innerText;;
+        console.log(e.target.innerText);
     });
 });
 
