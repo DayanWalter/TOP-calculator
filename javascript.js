@@ -12,24 +12,20 @@ const division = function(a, b){
 }
 
 const operate = function(a, operator, b){
-    const plus = "+";
-    const minus = "-";
-    const multi = "*";
-    const divi = "/"
-if(operator === plus){
+if(operator === "+"){
     return addition(a, b);
-}else if(operator === minus){
+}else if(operator === "-"){
     return subtraction(a, b);
-}else if(operator === multi){
+}else if(operator === "*"){
     return multiplication(a, b)
-}else if(operator === divi){
+}else if(operator === "/"){
     return division(a, b);
 }
 
 };
 
-let displayValueA = "";
-let displayValueB = "";
+let a = "";
+let b = "";
 let operator = "";
 
 const allClearButton = document.getElementById("allClear");
@@ -37,13 +33,16 @@ const calculatorDiv = document.getElementById("calculator");
 const operandButtons = document.querySelectorAll(".operand");
 const operatorButtons = document.querySelectorAll(".operator");
 const displayContent = document.getElementById("display");
+const operateButton = document.getElementById("operate");
 
 // set the display and displayValue to ""
 allClearButton.addEventListener("click", function(){
     displayContent.innerHTML = "";
-    displayValueA = "";
-    displayValueB = "";
+    a = "";
+    b = "";
     operator = "";
+    // a = "";
+    // b = "";
 });
 
 // every button in the calculator clicked will be displayed
@@ -51,13 +50,16 @@ allClearButton.addEventListener("click", function(){
 operandButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
         displayContent.innerHTML += e.target.innerText;
-        if(operator === ""){
 
-        displayValueA += e.target.innerText;
+        if(operator === ""){
+        a += e.target.innerText;
+
         console.log(e.target.innerText);
+
         }else if (operator !== "") {
-        displayValueB += e.target.innerText; 
-        displayContent.innerHTML = displayValueB;
+        b += e.target.innerText; 
+        displayContent.innerHTML = b;
+
         console.log(e.target.innerText);
         
         }
@@ -70,13 +72,26 @@ operatorButtons.forEach(function(button){
         // displayContent.innerHTML = "";
         operator = e.target.innerText;
         console.log(e.target.innerText);
-        a = displayValueA;
+
+        // a = displayValueA;
         console.log(a);
+        // b = displayValueB;
+        console.log(b);
+
+
     });
 });
 
+// operate (=)
+operateButton.addEventListener("click",function(){
+    // displayContent.innerHTML = displayValueA;
+   console.log( operate(a, operator, b));
+    console.log(a);
+    console.log(b);
+});
 
-// evrey button pressed will be displayed
+
+// just numbers will be accepted by the keyboard
 window.addEventListener('keydown', function(e){
     const numbersOnly = e.key;
         displayContent.innerHTML += numbersOnly.replace(/[^0-9]/g, "");
