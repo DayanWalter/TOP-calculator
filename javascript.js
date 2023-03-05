@@ -27,19 +27,36 @@ if(operator === plus){
 }
 
 };
+
+let displayValue;
+let operator;
+
 const allClearButton = document.getElementById("allClear");
 const calculatorDiv = document.getElementById("calculator");
 const operandButtons = document.querySelectorAll(".operand");
 const operatorButtons = document.querySelectorAll(".operator");
 const displayContent = document.getElementById("display");
 
-// set the display to "0"
-allClearButton.addEventListener("click", ()=> displayContent.innerHTML = "0");
+// set the display to ""
+allClearButton.addEventListener("click", function(){
+    displayContent.innerHTML = "";
+    displayValue = "";
+});
 
 // every button in the calculator clicked will be displayed
+// OPERANDS
 operandButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
         displayContent.innerHTML += e.target.innerText;
+        displayValue += e.target.innerText;
+        console.log(e.target.innerText);
+    });
+});
+
+// OPERATORS
+operatorButtons.forEach(function(button){ 
+    button.addEventListener("click", function(e){
+        // displayContent.innerHTML = "";
         console.log(e.target.innerText);
     });
 });
@@ -49,7 +66,8 @@ operandButtons.forEach(function(button){
 // }
 // evrey button pressed will be displayed
 window.addEventListener('keydown', function(e){
-    displayContent.innerHTML += e.key;
+    const numbersOnly = e.key;
+        displayContent.innerHTML += numbersOnly.replace(/[^0-9]/g, "");
     console.log(e.key);
 });
 
