@@ -37,7 +37,7 @@ const operandButtons = document.querySelectorAll(".operand");
 const operatorButtons = document.querySelectorAll(".operator");
 const displayContent = document.getElementById("display");
 
-// set the display to ""
+// set the display and displayValue to ""
 allClearButton.addEventListener("click", function(){
     displayContent.innerHTML = "";
     displayValue = "";
@@ -57,6 +57,7 @@ operandButtons.forEach(function(button){
 operatorButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
         // displayContent.innerHTML = "";
+        operator = e.target.innerText;
         console.log(e.target.innerText);
     });
 });
