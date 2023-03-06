@@ -51,16 +51,19 @@ allClearButton.addEventListener("click", function(){
 // OPERANDS(numbers)
 operandButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
+        
+        // display every number in the display
         displayContent.innerHTML += e.target.innerText;
 
+        // if there is no operator or "=", put the input in variable a
         if(operator === "" || operator === "="){
             a += e.target.innerText;
             displayContent.innerHTML = a;
 
         console.log(e.target.innerText);
 
+        // if the operator is defined put the input in variable b
         }else if (operator === "+" || operator === "-" || operator === "*" || operator === "/") {
-
             b += e.target.innerText; 
             displayContent.innerHTML = b;
 
@@ -80,7 +83,7 @@ operatorButtons.forEach(function(button){
             displayContent.innerHTML = result;
         }
         operator = e.target.innerText;
-
+        // if result is not empty put the value in a and clear b 
         if(result !== ""){
             b = "";
             a = result;
@@ -102,13 +105,10 @@ operateButton.addEventListener("click",function(e){
 
     result = Math.round((operate(+a, operator, +b))*100)/100;
     displayContent.innerHTML = result;
-    // console.log(`Value result = ${result}`);
 
     operator = "=";
-    // a = result;
     a = "";
     b = "";
-    // result = "";
 
     console.log(`Value a = ${a}`);
     console.log(`Value b = ${b}`);
@@ -123,10 +123,3 @@ window.addEventListener('keydown', function(e){
         displayContent.innerHTML += numbersOnly.replace(/[^0-9]/g, "");
     console.log(e.key);
 });
-
-
-
-// console.log(addition(7,7));
-// console.log(subtraction(7, 7));
-// console.log(multiplication(7, 7));
-// console.log(division(7,7));
