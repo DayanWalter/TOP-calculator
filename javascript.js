@@ -36,7 +36,23 @@ const operandButtons = document.querySelectorAll(".operand");
 const operatorButtons = document.querySelectorAll(".operator");
 const displayContent = document.getElementById("display");
 const operateButton = document.getElementById("operate");
+const plusMinusButton = document.getElementById("plusMinus");
 
+// plusMinusButton.addEventListener("click", function(){
+//     if(displayContent.innerHTML === result){
+//         result = result * (-1);
+//         displayContent.innerHTML = result
+//     }else if(displayContent.innerHTML === a){
+//         a = a * (-1);
+//         displayContent.innerHTML = a
+//     }else if(displayContent.innerHTML === b){
+//         b = b * (-1);
+//         displayContent.innerHTML = b
+
+//     }
+    
+
+// })
 // set the display and displayValue to ""
 allClearButton.addEventListener("click", function(){
     displayContent.innerHTML = "";
@@ -51,7 +67,7 @@ allClearButton.addEventListener("click", function(){
 // OPERANDS(numbers)
 operandButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
-        
+
         // display every number in the display
         displayContent.innerHTML += e.target.innerText;
 
@@ -104,9 +120,15 @@ operateButton.addEventListener("click",function(e){
     console.log(e.target.innerText);
 
     result = Math.round((operate(+a, operator, +b))*100)/100;
+    
+    
     displayContent.innerHTML = result;
 
     operator = "=";
+    if(operator === "=" && b === "0"){
+        displayContent.innerHTML = "NOo0o!!!";
+        result = "";
+    }
     a = "";
     b = "";
 
