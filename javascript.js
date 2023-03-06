@@ -45,8 +45,6 @@ allClearButton.addEventListener("click", function(){
     c = "";
     operator = "";
     result = "";
-    // a = "";
-    // b = "";
 });
 
 // every button in the calculator clicked will be displayed
@@ -77,11 +75,12 @@ operatorButtons.forEach(function(button){
     button.addEventListener("click", function(e){
         console.log(e.target.innerText);
 
-        if(operator !== ""){
+        if(operator !== "" && operator !== "="){
             result = operate(+a, operator, +b)
             displayContent.innerHTML = result;
         }
         operator = e.target.innerText;
+
         if(result !== ""){
             b = "";
             a = result;
@@ -106,8 +105,10 @@ operateButton.addEventListener("click",function(e){
     // console.log(`Value result = ${result}`);
 
     operator = "=";
-    a = result;
+    // a = result;
+    a = "";
     b = "";
+    // result = "";
 
     console.log(`Value a = ${a}`);
     console.log(`Value b = ${b}`);
