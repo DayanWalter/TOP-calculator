@@ -62,11 +62,12 @@ operandButtons.forEach(function(button){
         console.log(e.target.innerText);
 
         }else if (operator === "+" || operator === "-" || operator === "*" || operator === "/") {
+
             b += e.target.innerText; 
             displayContent.innerHTML = b;
 
         console.log(e.target.innerText);
-        
+
         }
     });
 });
@@ -80,23 +81,29 @@ operatorButtons.forEach(function(button){
 
         console.log(`Value a = ${a}`);
         console.log(`Value b = ${b}`);
+        console.log(`Value result = ${result}`);
+
 
 
     });
 });
 
 // operate (=)
-operateButton.addEventListener("click",function(){
+operateButton.addEventListener("click",function(e){
+    console.log(e.target.innerText);
+
     result = operate(+a, operator, +b)
     displayContent.innerHTML = result;
-    console.log(`Value result = ${result}`);
+    // console.log(`Value result = ${result}`);
 
     operator = "=";
-    a = "";
+    a = result;
     b = "";
 
     console.log(`Value a = ${a}`);
     console.log(`Value b = ${b}`);
+    console.log(`Value result = ${result}`);
+
 });
 
 
