@@ -100,7 +100,7 @@ operatorButtons.forEach(function(button){
 operateButton.addEventListener("click",function(e){
     console.log(e.target.innerText);
 
-    result = operate(+a, operator, +b)
+    result = Math.round((operate(+a, operator, +b))*100)/100;
     displayContent.innerHTML = result;
     // console.log(`Value result = ${result}`);
 
