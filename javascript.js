@@ -26,7 +26,9 @@ if(operator === "+"){
 
 let a = "";
 let b = "";
+let c = "";
 let operator = "";
+let result = "";
 
 const allClearButton = document.getElementById("allClear");
 const calculatorDiv = document.getElementById("calculator");
@@ -40,25 +42,28 @@ allClearButton.addEventListener("click", function(){
     displayContent.innerHTML = "";
     a = "";
     b = "";
+    c = "";
     operator = "";
+    result = "";
     // a = "";
     // b = "";
 });
 
 // every button in the calculator clicked will be displayed
-// OPERANDS
+// OPERANDS(numbers)
 operandButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
         displayContent.innerHTML += e.target.innerText;
 
-        if(operator === ""){
-        a += e.target.innerText;
+        if(operator === "" || operator === "="){
+            a += e.target.innerText;
+            displayContent.innerHTML = a;
 
         console.log(e.target.innerText);
 
-        }else if (operator !== "") {
-        b += e.target.innerText; 
-        displayContent.innerHTML = b;
+        }else if (operator === "+" || operator === "-" || operator === "*" || operator === "/") {
+            b += e.target.innerText; 
+            displayContent.innerHTML = b;
 
         console.log(e.target.innerText);
         
@@ -66,17 +71,15 @@ operandButtons.forEach(function(button){
     });
 });
 
-// OPERATORS
+// OPERATORS(+-*/)
 operatorButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
         // displayContent.innerHTML = "";
         operator = e.target.innerText;
         console.log(e.target.innerText);
 
-        // a = displayValueA;
-        console.log(a);
-        // b = displayValueB;
-        console.log(b);
+        console.log(`Value a = ${a}`);
+        console.log(`Value b = ${b}`);
 
 
     });
@@ -84,10 +87,16 @@ operatorButtons.forEach(function(button){
 
 // operate (=)
 operateButton.addEventListener("click",function(){
-    // displayContent.innerHTML = displayValueA;
-   console.log( operate(a, operator, b));
-    console.log(a);
-    console.log(b);
+    result = operate(+a, operator, +b)
+    displayContent.innerHTML = result;
+    console.log(`Value result = ${result}`);
+
+    operator = "=";
+    a = "";
+    b = "";
+
+    console.log(`Value a = ${a}`);
+    console.log(`Value b = ${b}`);
 });
 
 
