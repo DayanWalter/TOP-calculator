@@ -75,9 +75,18 @@ operandButtons.forEach(function(button){
 // OPERATORS(+-*/)
 operatorButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
-        // displayContent.innerHTML = "";
-        operator = e.target.innerText;
         console.log(e.target.innerText);
+
+        if(operator !== ""){
+            result = operate(+a, operator, +b)
+            displayContent.innerHTML = result;
+        }
+        operator = e.target.innerText;
+        if(result !== ""){
+            b = "";
+            a = result;
+        }
+        
 
         console.log(`Value a = ${a}`);
         console.log(`Value b = ${b}`);
