@@ -46,6 +46,7 @@ const plusMinusButton = document.getElementById("plusMinus");
 
 // set the display and displayValue to ""
 allClearButton.addEventListener("click", function(){
+    decimalButton.disabled = false;
     displayContent.innerHTML = "";
     a = "";
     b = "";
@@ -54,50 +55,37 @@ allClearButton.addEventListener("click", function(){
     result = "";
 });
 
-decimalButton.addEventListener("click", function(e){
-  // display every number in the display
-
-    displayContent.innerHTML += e.target.innerText;
-
-    if(displayContent.textContent.includes(".")){
-        decimalButton.disabled = true;
-    }else if(displayContent.textContent.includes(!".")){
-        decimalButton.disabled = false;
-    }
-
-  // if there is no operator or "=", put the input in variable a
+const checkOperator = function(e){
+    // if there is no operator or "=", put the input in variable a
     if(operator === "" || operator === "="){
         a += e.target.innerText;
         displayContent.innerHTML = a;
         console.log(e.target.innerText);
 
-  // if the operator is defined put the input in variable b
+    // if the operator is defined put the input in variable b
     }else if (operator === "+" || operator === "-" || operator === "*" || operator === "/") {
         b += e.target.innerText; 
         displayContent.innerHTML = b;
         console.log(e.target.innerText);
     }   
+}
+// DECIMAL(.)
+decimalButton.addEventListener("click", function(e){
+    // display every number in the display
+    displayContent.innerHTML += e.target.innerText;
+    // disable the decimal button if "." is in the display
+    if(displayContent.textContent.includes(".")){
+        decimalButton.disabled = true;
+    }
+    checkOperator(e);
 });
 
-// every button in the calculator clicked will be displayed
 // OPERANDS(numbers)
 operandButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
         // display every number in the display
         displayContent.innerHTML += e.target.innerText;
-        
-        // if there is no operator or "=", put the input in variable a
-        if(operator === "" || operator === "="){
-            a += e.target.innerText;
-            displayContent.innerHTML = a;
-            console.log(e.target.innerText);
-
-        // if the operator is defined put the input in variable b
-        }else if (operator === "+" || operator === "-" || operator === "*" || operator === "/") {
-            b += e.target.innerText; 
-            displayContent.innerHTML = b;
-            console.log(e.target.innerText);
-        }
+        checkOperator(e);
     });
 });
 
@@ -112,7 +100,7 @@ operatorButtons.forEach(function(button){
             displayContent.innerHTML = result;
         }
         operator = e.target.innerText;
-        // if result is not empty put the value in a and clear b 
+        // if result is not empty put result in a and clear b 
         if(result !== ""){
             b = "";
             a = result;
@@ -126,19 +114,23 @@ operatorButtons.forEach(function(button){
 
 // operate (=)
 operateButton.addEventListener("click",function(e){
+    // enable decimal button
+    decimalButton.disabled = false;
     console.log(e.target.innerText);
+    // round the result
     result = Math.round((operate(+a, operator, +b))*100)/100;
+    // display the result
     displayContent.innerHTML = result;
     operator = "=";
-
+    // division by zero
     if(operator === "=" && b === "0"){
         displayContent.innerHTML = "NOo0o!!!";
         result = "";
     }
-
+    // set a, b and result to ""
     a = "";
     b = "";
-
+    result = "";
     console.log(`Value a = ${a}`);
     console.log(`Value b = ${b}`);
     console.log(`Value result = ${result}`);
