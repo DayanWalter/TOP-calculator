@@ -24,3 +24,7 @@
 body{
     background-color:rgb(223, 255, 223);
 }
+#history{
+    display: flex;
+    justify-content: center;
+}

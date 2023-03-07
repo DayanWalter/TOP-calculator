@@ -36,23 +36,14 @@ const operandButtons = document.querySelectorAll(".operand");
 const operatorButtons = document.querySelectorAll(".operator");
 const displayContent = document.getElementById("display");
 const operateButton = document.getElementById("operate");
+const decimalButton = document.getElementById("decimal");
 const plusMinusButton = document.getElementById("plusMinus");
 
-// plusMinusButton.addEventListener("click", function(){
-//     if(displayContent.innerHTML === result){
-//         result = result * (-1);
-//         displayContent.innerHTML = result
-//     }else if(displayContent.innerHTML === a){
-//         a = a * (-1);
-//         displayContent.innerHTML = a
-//     }else if(displayContent.innerHTML === b){
-//         b = b * (-1);
-//         displayContent.innerHTML = b
-
-//     }
-    
-
+// plusMinusButton.addEventListener("click", function(e){
+//     displayContent.innerHTML = e*(-1);
 // })
+
+
 // set the display and displayValue to ""
 allClearButton.addEventListener("click", function(){
     displayContent.innerHTML = "";
@@ -63,13 +54,40 @@ allClearButton.addEventListener("click", function(){
     result = "";
 });
 
+decimalButton.addEventListener("click", function(e){
+  // display every number in the display
+
+  displayContent.innerHTML += e.target.innerText;
+  if(displayContent.textContent.includes(".")){
+    decimalButton.disabled = true;
+}else if(displayContent.textContent.includes(!".")){
+    decimalButton.disabled = false;
+}
+
+  // if there is no operator or "=", put the input in variable a
+  if(operator === "" || operator === "="){
+      a += e.target.innerText;
+      displayContent.innerHTML = a;
+
+  console.log(e.target.innerText);
+
+  // if the operator is defined put the input in variable b
+  }else if (operator === "+" || operator === "-" || operator === "*" || operator === "/") {
+      b += e.target.innerText; 
+      displayContent.innerHTML = b;
+
+  console.log(e.target.innerText);
+}});
+
 // every button in the calculator clicked will be displayed
 // OPERANDS(numbers)
 operandButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
 
+
         // display every number in the display
         displayContent.innerHTML += e.target.innerText;
+
 
         // if there is no operator or "=", put the input in variable a
         if(operator === "" || operator === "="){
@@ -91,7 +109,11 @@ operandButtons.forEach(function(button){
 
 // OPERATORS(+-*/)
 operatorButtons.forEach(function(button){ 
+
     button.addEventListener("click", function(e){
+
+        decimalButton.disabled = false;
+
         console.log(e.target.innerText);
 
         if(operator !== "" && operator !== "="){
