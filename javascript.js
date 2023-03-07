@@ -12,15 +12,15 @@ const division = function(a, b){
 }
 
 const operate = function(a, operator, b){
-if(operator === "+"){
-    return addition(a, b);
-}else if(operator === "-"){
-    return subtraction(a, b);
-}else if(operator === "*"){
-    return multiplication(a, b)
-}else if(operator === "/"){
-    return division(a, b);
-}
+    if(operator === "+"){
+        return addition(a, b);
+    }else if(operator === "-"){
+        return subtraction(a, b);
+    }else if(operator === "*"){
+        return multiplication(a, b)
+    }else if(operator === "/"){
+        return division(a, b);
+    }
 
 };
 
@@ -57,65 +57,56 @@ allClearButton.addEventListener("click", function(){
 decimalButton.addEventListener("click", function(e){
   // display every number in the display
 
-  displayContent.innerHTML += e.target.innerText;
-  if(displayContent.textContent.includes(".")){
-    decimalButton.disabled = true;
-}else if(displayContent.textContent.includes(!".")){
-    decimalButton.disabled = false;
-}
+    displayContent.innerHTML += e.target.innerText;
+
+    if(displayContent.textContent.includes(".")){
+        decimalButton.disabled = true;
+    }else if(displayContent.textContent.includes(!".")){
+        decimalButton.disabled = false;
+    }
 
   // if there is no operator or "=", put the input in variable a
-  if(operator === "" || operator === "="){
-      a += e.target.innerText;
-      displayContent.innerHTML = a;
-
-  console.log(e.target.innerText);
+    if(operator === "" || operator === "="){
+        a += e.target.innerText;
+        displayContent.innerHTML = a;
+        console.log(e.target.innerText);
 
   // if the operator is defined put the input in variable b
-  }else if (operator === "+" || operator === "-" || operator === "*" || operator === "/") {
-      b += e.target.innerText; 
-      displayContent.innerHTML = b;
-
-  console.log(e.target.innerText);
-}});
+    }else if (operator === "+" || operator === "-" || operator === "*" || operator === "/") {
+        b += e.target.innerText; 
+        displayContent.innerHTML = b;
+        console.log(e.target.innerText);
+    }   
+});
 
 // every button in the calculator clicked will be displayed
 // OPERANDS(numbers)
 operandButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
-
-
         // display every number in the display
         displayContent.innerHTML += e.target.innerText;
-
-
+        
         // if there is no operator or "=", put the input in variable a
         if(operator === "" || operator === "="){
             a += e.target.innerText;
             displayContent.innerHTML = a;
-
-        console.log(e.target.innerText);
+            console.log(e.target.innerText);
 
         // if the operator is defined put the input in variable b
         }else if (operator === "+" || operator === "-" || operator === "*" || operator === "/") {
             b += e.target.innerText; 
             displayContent.innerHTML = b;
-
-        console.log(e.target.innerText);
-
+            console.log(e.target.innerText);
         }
     });
 });
 
 // OPERATORS(+-*/)
 operatorButtons.forEach(function(button){ 
-
     button.addEventListener("click", function(e){
-
         decimalButton.disabled = false;
-
         console.log(e.target.innerText);
-
+        // if the operator is not empty & the operator is not "="
         if(operator !== "" && operator !== "="){
             result = operate(+a, operator, +b)
             displayContent.innerHTML = result;
@@ -126,31 +117,25 @@ operatorButtons.forEach(function(button){
             b = "";
             a = result;
         }
-        
-
+    
         console.log(`Value a = ${a}`);
         console.log(`Value b = ${b}`);
         console.log(`Value result = ${result}`);
-
-
-
     });
 });
 
 // operate (=)
 operateButton.addEventListener("click",function(e){
     console.log(e.target.innerText);
-
     result = Math.round((operate(+a, operator, +b))*100)/100;
-    
-    
     displayContent.innerHTML = result;
-
     operator = "=";
+
     if(operator === "=" && b === "0"){
         displayContent.innerHTML = "NOo0o!!!";
         result = "";
     }
+
     a = "";
     b = "";
 
