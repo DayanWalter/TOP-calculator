@@ -52,9 +52,14 @@ body{
 }
 
 #history{
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: left; */
     border: 8px solid black;
+    min-width: 200px;
+    margin-left: 30px;
+    padding: 15px;
+    /* border-radius: 25% */
+
 }
 .pressed{
     transform: scale(1.1);

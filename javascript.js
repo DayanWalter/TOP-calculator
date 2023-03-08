@@ -65,6 +65,7 @@ const operateButton = document.getElementById("operate");
 
 const decimalButton = document.getElementById("decimal");
 
+
 // START OF EVENTLISTENER
 
 // set the display and displayValue to ""
@@ -151,12 +152,23 @@ operateButton.addEventListener("click",function(e){
     console.log(e.target.innerText);
     result = Math.round((operate(+a, operator, +b))*100)/100;
     displayContent.innerHTML = result;
-    operator = "=";
+
+    // add entry in history
+    const list = document.createElement("li");
+    const resultHistory = document.createTextNode(`${a} ${operator} ${b} = ${result}`);
+    list.appendChild(resultHistory);
+    const element = document.getElementById("history");
+    element.appendChild(list);
+
+    console.log(`${a} ${operator} ${b} = ${result}`);
+    
     // division by zero is not allowed
-    if(operator === "=" && b === "0"){
+    if(operator === "/" && b === "0"){
         displayContent.innerHTML = "NOo0o!!!";
         result = "";
     }
+    operator = "=";
+
     console.log(`Value a = ${a}`);
     console.log(`Value b = ${b}`);
     console.log(`Value result = ${result}`);
