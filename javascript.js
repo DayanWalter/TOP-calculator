@@ -92,10 +92,10 @@ plusMinusButton.addEventListener("click", function(){
 // quberoot the display value
 rootButton.addEventListener("click", function(){
     if(displayContent.innerHTML === a){
-        a = Math.round((a ** (1/2))*100000000)/100000000
+        a = Math.round((a ** (1/2))*1000000)/1000000
         displayContent.innerHTML = a;
     }else if (displayContent.innerHTML === b){
-        b = Math.round((b ** (1/2))*100000000)/100000000
+        b = Math.round((b ** (1/2))*1000000)/1000000
         displayContent.innerHTML = b;
     }
 });
