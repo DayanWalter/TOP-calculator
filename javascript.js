@@ -136,11 +136,3 @@ operateButton.addEventListener("click",function(e){
     console.log(`Value result = ${result}`);
 
 });
-
-
-// just numbers will be accepted by the keyboard
-window.addEventListener('keydown', function(e){
-    const numbersOnly = e.key;
-        displayContent.innerHTML += numbersOnly.replace(/[^0-9]/g, "");
-    console.log(e.key);
-});
