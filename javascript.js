@@ -38,10 +38,21 @@ const displayContent = document.getElementById("display");
 const operateButton = document.getElementById("operate");
 const decimalButton = document.getElementById("decimal");
 const plusMinusButton = document.getElementById("plusMinus");
+const percentButton = document.getElementById("percent");
 
-// plusMinusButton.addEventListener("click", function(e){
-//     displayContent.innerHTML = e*(-1);
-// })
+plusMinusButton.addEventListener("click", function(e){
+    if(displayContent.innerHTML === a){
+        console.log("A")
+        a = a*(-1) 
+        displayContent.innerHTML = a;
+    }else if (displayContent.innerHTML === b){
+        console.log("B");
+        b = b*(-1) 
+        displayContent.innerHTML = b;
+    }
+});
+
+
 
 
 // set the display and displayValue to ""
