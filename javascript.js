@@ -38,21 +38,30 @@ const displayContent = document.getElementById("display");
 const operateButton = document.getElementById("operate");
 const decimalButton = document.getElementById("decimal");
 const plusMinusButton = document.getElementById("plusMinus");
-const percentButton = document.getElementById("percent");
+const rootButton = document.getElementById("root");
 
-plusMinusButton.addEventListener("click", function(e){
+
+// invert the display value
+plusMinusButton.addEventListener("click", function(){
     if(displayContent.innerHTML === a){
-        console.log("A")
-        a = a*(-1) 
+        a = a * (-1) 
         displayContent.innerHTML = a;
     }else if (displayContent.innerHTML === b){
-        console.log("B");
-        b = b*(-1) 
+        b = b * (-1) 
         displayContent.innerHTML = b;
     }
 });
 
-
+// quberoot the display value
+rootButton.addEventListener("click", function(){
+    if(displayContent.innerHTML === a){
+        a = Math.round((a ** (1/2))*100000000)/100000000
+        displayContent.innerHTML = a;
+    }else if (displayContent.innerHTML === b){
+        b = Math.round((b ** (1/2))*100000000)/100000000
+        displayContent.innerHTML = b;
+    }
+});
 
 
 // set the display and displayValue to ""
