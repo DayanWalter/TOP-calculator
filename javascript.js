@@ -1,3 +1,6 @@
+// START OF FUNCTIONS
+
+// basic
 const addition = function(a, b){
     return a + b;
 }
@@ -11,6 +14,7 @@ const division = function(a, b){
     return Math.round(a / b*100)/100;
 }
 
+// operate
 const operate = function(a, operator, b){
     if(operator === "+"){
         return addition(a, b);
@@ -21,25 +25,58 @@ const operate = function(a, operator, b){
     }else if(operator === "/"){
         return division(a, b);
     }
-
 };
 
+// check for operators
+const checkOperator = function(e){
+    // if there is no operator or "=", put the input in variable a
+    if(operator === "" || operator === "="){
+        a += e.target.innerText;
+        displayContent.innerHTML = a;
+
+    // if the operator is defined put the input in variable b
+    }else if (operator === "+" || operator === "-" || operator === "*" || operator === "/") {
+        b += e.target.innerText; 
+        displayContent.innerHTML = b;
+    }   
+};
+
+// END OF FUNCTIONS
+
+// initialize variables
 let a = "";
 let b = "";
 let c = "";
 let operator = "";
 let result = "";
 
-const allClearButton = document.getElementById("allClear");
+// define constants
 const calculatorDiv = document.getElementById("calculator");
-const operandButtons = document.querySelectorAll(".operand");
-const operatorButtons = document.querySelectorAll(".operator");
 const displayContent = document.getElementById("display");
-const operateButton = document.getElementById("operate");
-const decimalButton = document.getElementById("decimal");
+
+const allClearButton = document.getElementById("allClear");
 const plusMinusButton = document.getElementById("plusMinus");
 const rootButton = document.getElementById("root");
 
+const operandButtons = document.querySelectorAll(".operand");
+const operatorButtons = document.querySelectorAll(".operator");
+
+const operateButton = document.getElementById("operate");
+
+const decimalButton = document.getElementById("decimal");
+
+// START OF EVENTLISTENER
+
+// set the display and displayValue to ""
+allClearButton.addEventListener("click", function(){
+    decimalButton.disabled = false;
+    displayContent.innerHTML = "";
+    a = "";
+    b = "";
+    c = "";
+    operator = "";
+    result = "";
+});
 
 // invert the display value
 plusMinusButton.addEventListener("click", function(){
@@ -63,33 +100,8 @@ rootButton.addEventListener("click", function(){
     }
 });
 
-
-// set the display and displayValue to ""
-allClearButton.addEventListener("click", function(){
-    decimalButton.disabled = false;
-    displayContent.innerHTML = "";
-    a = "";
-    b = "";
-    c = "";
-    operator = "";
-    result = "";
-});
-
-const checkOperator = function(e){
-    // if there is no operator or "=", put the input in variable a
-    if(operator === "" || operator === "="){
-        a += e.target.innerText;
-        displayContent.innerHTML = a;
-
-    // if the operator is defined put the input in variable b
-    }else if (operator === "+" || operator === "-" || operator === "*" || operator === "/") {
-        b += e.target.innerText; 
-        displayContent.innerHTML = b;
-    }   
-}
-// DECIMAL(.)
+// decimal(.)
 decimalButton.addEventListener("click", function(e){
-    // display every number in the display
     displayContent.innerHTML += e.target.innerText;
     // disable the decimal button if "." is in the display
     if(displayContent.textContent.includes(".")){
@@ -98,16 +110,15 @@ decimalButton.addEventListener("click", function(e){
     checkOperator(e);
 });
 
-// OPERANDS(numbers)
+// operands(numbers)
 operandButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
-        // display every number in the display
         displayContent.innerHTML += e.target.innerText;
         checkOperator(e);
     });
 });
 
-// OPERATORS(+-*/)
+// operators(+-*/)
 operatorButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
         decimalButton.disabled = false;
@@ -132,15 +143,12 @@ operatorButtons.forEach(function(button){
 
 // operate (=)
 operateButton.addEventListener("click",function(e){
-    // enable decimal button
     decimalButton.disabled = false;
     console.log(e.target.innerText);
-    // round the result
     result = Math.round((operate(+a, operator, +b))*100)/100;
-    // display the result
     displayContent.innerHTML = result;
     operator = "=";
-    // division by zero
+    // division by zero is not allowed
     if(operator === "=" && b === "0"){
         displayContent.innerHTML = "NOo0o!!!";
         result = "";
@@ -149,8 +157,9 @@ operateButton.addEventListener("click",function(e){
     console.log(`Value b = ${b}`);
     console.log(`Value result = ${result}`);
 
-    // set a, b and result to ""
     a = "";
     b = "";
     result = "";
 });
+
+//END OF EVENTLISTENER
