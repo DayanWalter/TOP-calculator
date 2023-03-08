@@ -60,13 +60,11 @@ const checkOperator = function(e){
     if(operator === "" || operator === "="){
         a += e.target.innerText;
         displayContent.innerHTML = a;
-        console.log(e.target.innerText);
 
     // if the operator is defined put the input in variable b
     }else if (operator === "+" || operator === "-" || operator === "*" || operator === "/") {
         b += e.target.innerText; 
         displayContent.innerHTML = b;
-        console.log(e.target.innerText);
     }   
 }
 // DECIMAL(.)
@@ -93,7 +91,7 @@ operandButtons.forEach(function(button){
 operatorButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
         decimalButton.disabled = false;
-        console.log(e.target.innerText);
+        console.log(`Value a (${a}) ${e.target.innerText} Value b ()`);
         // if the operator is not empty & the operator is not "="
         if(operator !== "" && operator !== "="){
             result = operate(+a, operator, +b)
@@ -127,12 +125,12 @@ operateButton.addEventListener("click",function(e){
         displayContent.innerHTML = "NOo0o!!!";
         result = "";
     }
-    // set a, b and result to ""
-    a = "";
-    b = "";
-    result = "";
     console.log(`Value a = ${a}`);
     console.log(`Value b = ${b}`);
     console.log(`Value result = ${result}`);
 
+    // set a, b and result to ""
+    a = "";
+    b = "";
+    result = "";
 });

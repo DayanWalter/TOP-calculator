@@ -27,4 +27,5 @@ body{
 #history{
     display: flex;
     justify-content: center;
+    border: 8px solid black;
 }
