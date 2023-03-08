@@ -61,8 +61,13 @@ body{
     /* border-radius: 25% */
 
 }
-.pressed{
-    transform: scale(1.1);
-    border-color: #ffc600;
-    box-shadow: 0 0 10px #ffc600;
+.pressedOperand{
+    transform: scale(1.05);
+    border-color: rgb(255, 230, 175);
+    box-shadow: 0 0 10px rgb(255, 230, 175);
+}
+.pressedOperator{
+    transform: scale(1.05);
+    border-color: rgb(175, 255, 230);
+    box-shadow: 0 0 10px rgb(175, 255, 230);
 }

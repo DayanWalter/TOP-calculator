@@ -116,16 +116,20 @@ operandButtons.forEach(function(button){
     button.addEventListener("click", function(e){
         displayContent.innerHTML += e.target.innerText;
         checkOperator(e);
-        button.classList.add("pressed");
+        button.classList.add("pressedOperand");
         setTimeout(function(){
-            button.classList.remove("pressed")
-        }, 30)
+            button.classList.remove("pressedOperand")
+        }, 60)
     });
 });
 
 // operators(+-*/)
 operatorButtons.forEach(function(button){ 
     button.addEventListener("click", function(e){
+        button.classList.add("pressedOperator");
+        setTimeout(function(){
+            button.classList.remove("pressedOperator")
+        }, 60)
         decimalButton.disabled = false;
         console.log(`Value a (${a}) ${e.target.innerText} Value b ()`);
         // if the operator is not empty & the operator is not "="
@@ -161,7 +165,7 @@ operateButton.addEventListener("click",function(e){
     element.appendChild(list);
 
     console.log(`${a} ${operator} ${b} = ${result}`);
-    
+
     // division by zero is not allowed
     if(operator === "/" && b === "0"){
         displayContent.innerHTML = "NOo0o!!!";
