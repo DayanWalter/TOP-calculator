@@ -15,7 +15,7 @@
     justify-content:flex-end;
     align-items:center;
     font-size: 5em;
-    border: 1px solid black;
+    border: 4px solid black;
     background-color: rgb(175, 230, 255);
     border-radius: 15%;
 
@@ -55,4 +55,9 @@ body{
     display: flex;
     justify-content: center;
     border: 8px solid black;
+}
+.pressed{
+    transform: scale(1.1);
+    border-color: #ffc600;
+    box-shadow: 0 0 10px #ffc600;
 }

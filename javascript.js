@@ -115,6 +115,10 @@ operandButtons.forEach(function(button){
     button.addEventListener("click", function(e){
         displayContent.innerHTML += e.target.innerText;
         checkOperator(e);
+        button.classList.add("pressed");
+        setTimeout(function(){
+            button.classList.remove("pressed")
+        }, 30)
     });
 });
 
